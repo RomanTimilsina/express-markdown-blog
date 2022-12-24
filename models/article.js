@@ -38,7 +38,12 @@ articleSchema.pre('validate', function(next) {
   }
 
   if (this.markdown) {
-    this.sanitizedHtml = dompurify.sanitize(marked(this.markdown))
+    if (this.markdown) {
+      this.sanitizedHtml = dompurify.sanitize(marked.parse(this.markdown))
+    }
+
+    //this.sanitizedHtml = dompurify.sanitize(doc.body)
+    
   }
 
   next()
